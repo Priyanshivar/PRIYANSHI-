@@ -1,0 +1,31 @@
+
+<Joining_condition> 
+
+create table tbl_Course
+(
+cid int primary key identity(1,1),
+cname nvarchar(50)
+)
+create table tbl_Student
+(
+sid int primary key identity(1,1),
+sname nvarchar(50),
+sage int,
+saddress nvarchar(100),
+mobileno nvarchar(15),
+sfee decimal(22,2),
+cid int foreign key references tbl_Course(cid)
+)
+
+select * from tbl_Course
+select * from tbl_Student
+
+--select * from tableName1 inner join/join tableName2 on <Joining_condition> 
+select sname,sage,sfee,cname from tbl_course join tbl_Student on tbl_Course.cid=tbl_Student.cid and tbl_Course.cname='python'
+-- or
+select s1.sname,s1.sage,s1.sfee,c1.cname from tbl_course c1 inner join tbl_Student s1 on c1.cid=s1.cid and c1.cname='ai'
+
+select s1.sname,s1.sage,s1.sfee,c1.cname from tbl_course c1 left join tbl_Student s1 on c1.cid=s1.cid and c1.cname='ai'
+select s1.sname,s1.sage,s1.sfee,c1.cname from tbl_course c1 right join tbl_Student s1 on c1.cid=s1.cid and c1.cname='ai'
+select s1.sname,s1.sage,s1.sfee,c1.cname from tbl_course c1 full join tbl_Student s1 on c1.cid=s1.cid and c1.cname='ai'
+
